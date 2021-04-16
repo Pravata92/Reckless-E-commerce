@@ -1,0 +1,327 @@
+/* --------------------- HEADER ------------------- */
+
+header{
+    display: flex;
+    flex-direction: column;
+    color: var(--black);
+}
+
+header ul{
+    width: 100%;
+    display: flex;
+}
+
+header ul li{
+    padding: 10px;
+}
+
+header a{
+    color: var(--black);   
+}
+
+#promotions{
+    color: var(--magenta);
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    height: 15px;
+    align-items: center;
+}
+
+.search{
+    position: absolute;
+    left:0;
+    font-size: 50px;
+}
+
+.fa-search{
+    font-size: 14px;
+}
+
+#nav-bar1{ 
+    justify-content: flex-end;
+}
+
+#nav-bar1 li{
+    font-size: 12px;
+    padding: 5px;
+    margin: 5px 10px;
+}
+
+#nav-bar1 li:nth-child(4){
+    font-size: 20px;
+    margin: auto 0px;
+}
+
+#nav-bar1 li a:hover{
+    opacity: 0.7;
+}
+
+.myaccount-prelog{
+    display: none;
+    position: relative;
+}
+
+
+
+.logued-container{
+    display: none;
+    position: relative;
+}
+#my-profile{
+    align-content: center;
+    
+}
+#my-profile:hover .logued-container{
+    display: flex;
+    position: absolute;
+    right: 150px;
+    width: 150px;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--black);
+    background-color: rgba(255, 255, 255, 0.897);
+    z-index: 15; 
+
+}
+
+.logued-container ul{
+    padding: 0px;
+}
+.logued-container a{
+    font-size: 15px;
+}
+
+.my-account-tittle {
+    padding-top: 0px;
+   
+}
+
+#my-account:hover .myaccount-prelog{
+    display: flex;
+    position: absolute;
+    right: 55px;
+    width: 300px;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 5px;
+    border: 1px solid var(--black);
+    background-color: rgba(255, 255, 255, 0.897);
+    z-index: 15; 
+}
+
+.myaccount-prelog .title-prelog{
+    margin-bottom: 20px;
+    margin-left: 2px;
+}
+
+.prelog-container{
+    width: 100%;
+}
+
+.myaccount-prelog input:not([type = 'checkbox']){
+    border-radius: 2px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 7px;
+    border: 1px solid black;
+}
+.label-padding{
+    padding-right: 10px;
+}
+
+.prelog-container input:focus{
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.562);
+    border: 1px solid;
+    border-image: linear-gradient(to right, var(--cyan) 33%, var(--magenta) 33%,var(--magenta) 66%, var(--yellow) 66%,var(--yellow) 100% ) 5; 
+    outline: 0;
+}
+
+.prelog-container p{
+    margin: 10px 2px;
+}
+
+.prelog-container .forget-pass:hover{
+    text-decoration:underline;
+    opacity: 0.8;
+}
+
+.btn-log-in{
+    color: white;
+    background-color: var(--black);
+    width: 80%;
+    padding: 7px;
+    margin: 10px;
+    border-radius: 2px;
+    border: 1px solid transparent
+}
+
+.btn-log-in:hover{
+    opacity: .8;
+    border:1px solid var(--magenta);
+    background-color: rgba(33, 33, 33, 0.705);
+    cursor: pointer;
+}
+
+.btn-register{
+    margin-top: 10px;
+    padding: 7px;
+    border-radius: 2px;
+    background-color: var(--black);
+    width: 80%;
+    text-align: center;
+    border:1px solid transparent;
+}
+
+#btn-register-now{
+    margin: 0px;
+    font-size: 13px;
+    color: white;
+    border: 1px solid varr(--black);
+}
+
+.btn-register:hover{
+    border:1px solid var(--magenta);
+    background-color: rgba(33, 33, 33, 0.705);
+    cursor: pointer;
+    
+   
+}
+
+.container-checkout button{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 2px ;
+    border: 1px solid  var(--black);
+    background-color: var(--black);
+}
+.container-checkout button:hover{
+    border-color: var(--magenta);
+    background-color: rgba(33, 33, 33, 0.705);
+    cursor: pointer;
+}
+
+.container-logo{
+    display: flex;
+    justify-content: center; 
+}
+
+#logo-header{
+    height: 110px;
+}
+
+#nav-bar2{
+    justify-content: center;
+}
+
+.nav-bar2-li{
+    margin: 10px 40px;
+    font-size: 15px;
+    
+} 
+
+#nav-bar2 li a:hover{
+    opacity: 0.7;
+}
+
+#shop{
+    position: relative;
+    border-radius: 2px;
+    z-index: 10;
+ 
+}
+
+#shop:hover{
+    background-color: rgba(230, 227, 227, 0.699);
+    
+}
+
+.sub-shop{
+    display: none;
+}
+
+#shop:hover .sub-shop{ 
+    display: flex;
+    position: absolute;
+    width: 150px;
+    flex-direction: column;
+    padding: 1px;
+    top: 38px;
+    left: 0px;
+    font-size: 10px; 
+    background-color:rgba(235, 235, 235, 0.95);
+    z-index: 100;
+    border-top: 1px solid white;
+    border-radius: 2px;
+} 
+
+.sub-shop-list{
+    margin: 0px auto 0px 0px;
+    text-align: start;
+}
+
+.sub-shop-list:hover{
+    width: 100%;
+    padding-right: auto;
+    margin-right: auto;
+}
+
+.sub-shop-list:hover a{
+    opacity: 0.7;
+}
+
+.sub-shop a{
+    padding: 5px;
+    margin: 0px;
+}
+
+/* ------------ HEADER RESPONSIVE -----------------*/
+
+@media (max-width: 768px) {
+
+    header #nav-bar1,#nav-bar2,.logo{
+        display: none;
+    }
+
+    header #promotions{
+        display:none;
+    }   
+    
+    header .first-main{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 0;
+        position: fixed;
+        color: var(--black);
+        border-bottom: 1px solid #ede6e0;
+        background-color: white;
+        top: 0px;
+        z-index: 100;
+    }
+
+    .btn-main{
+        padding: auto 10px;
+    }
+
+    .fa-bars{
+        padding: 5px 15px;
+        font-size:25px;
+    }
+    #logo-header-responsive{
+        top: -8px;
+        position: absolute;
+        height: 75px;
+    }
+
+    #logo-header{
+        display: none;
+    }
+}
+
+@media (max-width: 425px){
+    .fa-bars{
+        padding: 5px;
+    }
+}

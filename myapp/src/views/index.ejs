@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head')%>
+
+<body>
+
+        <!-- HEADER -->
+        <%- include('partials/header')%>
+
+       
+        
+        <main class="main-home">
+            <a class="paralax-link" href="/products">
+                <div class="parallax-mirror">
+                    <div class="parallax"></div>   
+                </div>
+            </a>
+            
+            <section id="new-arrivals">
+                <div class="h1-center">
+                    <h1>NEW ARRIVALS</h1>
+                </div>
+
+                <div class="products-container">
+
+                    <% for(product of products){%>
+                 
+                        <article class="product-container">
+                            <a href="/products/detail/<%= product.id %>">
+                               
+                                <img src="/imgs/products/<%= product.images[0].filename[0] %>" alt=""> 
+                                      
+                                <div class="product-detail">
+                                    <div class="name-price-product-container">
+                                        <h3><%= product.name%></h3> 
+                                        <p>$<%= product.price %></p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div>
+                                <% if(product.dataValues.liked == 'added'){ %> 
+                                    <span><i class="fas fa-heart like added" id="<%= product.id %>"></i></span> 
+                                <% } else { %>
+                                    <span><i class="fas fa-heart like" id="<%= product.id %>"></i></span>   
+                                <% } %>
+                            </div>
+                        </article>
+                    <%}%>
+
+                </div>
+
+                <div class="inactive" id="modalRequireLogin">
+                    <div class="require-login-container">
+                        <section>
+                            <h2>Sing In</h2>
+                            <form action="/users/login" class="form-login-style" id="login-form" method="POST">
+                            <ul class="errors"></ul>
+                            <input type="email" class="input-style" id="login-email" placeholder="E-MAIL" name="email" autocomplete="off" value="<%= typeof email == 'undefined' ? '': typeof email == 'undefined' ? '' : email  %>">
+                            
+                            <small class="errors-style"><%= typeof errors == 'undefined' ? '': typeof errors.email == 'undefined' ? '' : errors.email.msg  %></small>
+                            
+                            <input type="password" class="input-style" id="password-login" placeholder="PASSWORD" name="password">
+                            <small class="errors-style"><%= typeof errors == 'undefined' ? '': typeof errors.password == 'undefined' ? '' : errors.password.msg  %> </small>
+                            <div class="check-box-rowed">
+                                <label for="remember">Remember me</label>
+                                <input type="checkbox" name="remember">
+                            </div>
+                            <button type="submit" id="login-button" class="btn-log-in btn-centered">LOG IN</button>
+                            <p>If you have an account with us, log in using your email address and password. </p>
+                            <a class="forget-pass" href="">Did you forget your password?</a>
+                            <a href="/users/register" class="form-login-style">
+                                <button type="submit"  class="btn-log-in">REGISTER</button> 
+                            </a>
+                        </form>
+                    </section>
+                    </div>    
+                </div>
+
+            </section>
+
+        </main>
+
+    <script src="/scripts/parallax.js"></script>
+    <script src="/scripts/wishlist.js"></script>
+    <!-- FOOTER -->
+
+    <%- include('partials/footer')%>
+
+    
+</body>
+
+</html>

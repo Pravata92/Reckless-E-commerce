@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head')%>
+    <body>
+    
+        <%- include('../partials/header')%>
+
+        <main>
+            <section>
+
+                <div id="product-detail">
+                    <div class="product-detail-imgs">
+                        <div class= "thumbnail-imgs-container">
+                            
+                            <% for (image of product.images[0].filename){%>
+                            <div class= "thumbnail-img-container">
+                                <img src="/imgs/products/<%= image %>" alt="" class="thumbnail-img" >
+                            </div>
+                            <%}%>
+                            
+                        </div>
+
+                        <div class= "zoom-img">
+                            <a href=""><img src="/imgs/products/<%= product.images[0].filename[0] %>" alt="" class="zoom-img"></a>    
+                        </div>
+                    </div>  
+
+                    <div class="product-detail-text">
+                        <div class="product-detail-title">
+
+                            <ul class= "product-detail__name-heart">
+                                <h1><%= product.name %></h1>
+                                <i class="far fa-heart"></i>
+                            </ul>
+                            <% if (product.discount) { %>
+                                <ul class= "product-detail__price-promotions">
+                                    <ul>
+                                        <li><span class="product-detail__price-off">$<%= product.price %></span></li>
+                                        <li><p class= "product-detail__promotions"><i class="fas fa-tag"></i><%= product.discount %>% OFF</p></li>
+                                    </ul>
+                                    <span class="product-detail__reprice">$<%= product.price - product.discount * product.price / 100 %></span>
+                                </ul>
+                                
+                            <% }else { %>
+                                <ul class= "product-detail__price-promotions">
+                                <span class="product-detail__price">$<%= product.price %></span>
+                                </ul>
+                            <% } %>
+                            
+                        </div>
+
+                        
+                        <% if (userLog.user_type_id == 1 || userLog.user_type_id == 2) { %> 
+                            <div class="product-detail-selector">
+                                
+                                <div >
+                    
+                                    <div class="product-detail__colors">
+                                        <legend>COLOR: <%= product.colors[0].title %></legend>
+                                        <ul>
+                                            <% for( color of product.colors ) { %>
+                                            <li>
+                                                <input type="radio" name="color" class= "color-circle">
+                                                <label for="color" id="color-input">
+                                                    <div id="color-circle" style="background-color: <%= color.hexadecimal %>"></div>
+                                                </label>
+                                            </li>
+                                            <% } %>
+                                        </ul>
+                                    </div>
+                                        
+                                    <div>
+                                        <select name="size" class="product-detail__select">
+                                            <% for (size of product.sizes) { %>}
+                                            <option value="<%= size.id %>" selected><%= size.title %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+        
+                                    <div class="product-detail-selector">
+                                        <label for="qty" style ="font-size: 14px"> QUANTITY</label>
+                                        <input class="product-detail__select" type="number" value="1" name="qty" id="qty">
+                                    </div>
+                                    <div class="edit-delete-product">
+                                        <div>
+                                            <a href="/products/edit/<%= product.id%>" >
+                                                <button type="button" class="buttons-detail"><i class="fas fa-times"></i>EDIT</button>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST" name="button" >
+                                                <button type="submit" class="buttons-detail" name="button"><i class="fas fa-times"></i>DEL</button>
+                                            </form>
+                                        </div>
+                                    </div> 
+                                
+                            </div>
+                        <% }else{ %> 
+                            <div class="product-detail-selector">
+                                    <form action="/cart/addToCart/<%= product.id%>" method="POST" name="addToCartButton" >
+                                        <div >
+                            
+                                            <div class="product-detail__colors">
+                                                <legend>COLORS</legend>
+                                                <ul>
+                                                    <li><input type="radio" name="color" class= "color-circle"></li>
+                                                    <li><input type="radio" name="color" class= "color-circle"></li>
+                                                    <li><input type="radio" name="color" class= "color-circle"></li>
+                                                    <li><input type="radio" name="color" class= "color-circle"></li>
+                                                    <li><input type="radio" name="color" class= "color-circle"></li>
+                                                </ul>
+                                            </div>
+                                                
+                                            <div>
+                                                <select name="size" class="product-detail__select">
+                                                    <option value="" selected><%= product.sizes[0].title %></option>
+                                                    
+                                                </select>
+                                            </div>
+                
+                                            <div class="product-detail-selector">
+                                               <label for="qty" style ="font-size: 14px"> QUANTITY</label>
+                                               <input class="product-detail__select" type="number" value="1" name="qty" id="qty">
+                                            </div>
+                                            <button type="submit" class="buttons-detail" name="button"><i class="fas fa-sho
+                                            pping-cart"></i>ADD TO CART</button>
+                                    </form>
+                            </div>
+                        <% } %> 
+                        
+                        <div class="product-detail__details">
+                            <ul>
+                                <div>
+                                    <li><p>DETAILS</p></li>
+                                    <li>
+                                        <span class="material-icons show-description">
+                                            add
+                                        </span>
+                                        <span class="material-icons show-description active">
+                                            remove
+                                        </span>
+                                    </li>
+                                </div>
+                                <div class="detail-description">
+                                    <p id="detail-description-text" class= "active">
+                                        <%= product.description %>
+                                    </p>
+                                </div>
+                            </ul>
+                            <ul>
+                                <div>
+                                    <li><p>SIZE GUIDE</p></li>
+                                        <li>
+                                            <span class="material-icons">
+                                                add
+                                            </span>
+                                        </li>
+                                </div>
+                            </ul>
+                            <ul>
+                                <div>
+                                    <li><p>SHIPPING</p></li>
+                                    <li>
+                                        <span class="material-icons">
+                                            add
+                                        </span>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+            
+            <section class="product-suggest">
+                <h3>You may also like:</h3>
+                <div class="product-suggest-container">
+                    <div class="icon-container">
+                        <span class="material-icons">
+                            navigate_before
+                        </span>
+                    </div>
+    
+    
+                    <div class="wishlist-img">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"  alt="">
+    
+                    </div>
+    
+                    <div class="wishlist-img">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"  alt="">
+    
+                    </div>
+    
+                    <div class="wishlist-img">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"  alt="">
+    
+                    </div>
+    
+                    <div class="wishlist-img">
+    
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"  alt="">
+    
+                    </div>
+    
+    
+                    <div class="wishlist-img">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"  alt="">
+    
+                    </div class="wishlist-img">
+    
+                    <div class="icon-container">
+                        <span class="material-icons">
+                            navigate_next
+                        </span>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        <script src="/scripts/productDetail.js"></script>
+        <!-- FOOTER -->
+
+        <%- include('../partials/footer')%>
+    </body>
+</html>
